@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: ceeacce
+        psr4_prefix: ceeacce
+        src_path: app
