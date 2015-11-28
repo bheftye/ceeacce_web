@@ -79,10 +79,6 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::post('student/import', 'Student\StudentController@import');
 
-    Route::post('student/{id}/grades', 'Student\StudentController@saveGrades');
-
-    Route::post('student/{id}', 'Student\StudentController@saveInfo');
-
     Route::post('student/import/grades', 'Student\StudentController@importGrades');
 
     Route::post('students', function(\Illuminate\Http\Request $request){

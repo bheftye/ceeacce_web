@@ -147,8 +147,8 @@
                         <td>{{$subject->clv}}</td>
                         <td>{{mb_strtoupper($subject->name)}}</td>
                         <td><input type="text" name="grade[]" value="{{$studentGrade}}" disabled></td>
-                        <td><input type="text" name="date_taken[]" value="{{$grade->date_taken}}" disabled></td>
-                        <td><input type="text" name="type[]" value="{{$grade->type}}" disabled></td>
+                        <td><input type="text" name="date_taken[]" value="{{(isset($grade->date_taken))?$grade->date_taken:''}}" disabled></td>
+                        <td><input type="text" name="type[]" value="{{(isset($grade->type))?$grade->type:''}}" disabled></td>
                     </tr>
                     @endforeach
                     </tbody>
