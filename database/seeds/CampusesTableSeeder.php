@@ -16,7 +16,7 @@ class CampusesTableSeeder extends Seeder
             'name' => "CEEAC",
             'address' => 'Calle 60 # 313 por 29 y 31 Col. Alcala Martin C.P. 97050',
             'num_agreement' => '',
-            'data_text' => ''
+            'date_text' => ''
         ]);
 
         DB::table('campuses')->insert([
@@ -24,7 +24,7 @@ class CampusesTableSeeder extends Seeder
             'name' => "INSTITUTO CEEAC",
             'address' => 'Calle 18 # 202-A por 21 y 23 Col. García Gineres. C.P. 97070',
             'num_agreement' => '',
-            'data_text' => ''
+            'date_text' => ''
         ]);
     }
 }

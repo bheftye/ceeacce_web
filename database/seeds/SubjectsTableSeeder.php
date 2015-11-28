@@ -99,39 +99,29 @@ class SubjectsTableSeeder extends Seeder
             'clv' => "M-MAT02",
             'name' => "Matemáticas II",
             'module' => 2,
-            'credits' => 2.6,
-            'length' => 2,
+            'credits' => 5.2,
+            'length' => 4,
             'order' => 8,
         ]);
 
         DB::table('subjects')->insert([
             'id' => 9,
-            'clv' => "M-MAT02",
-            'name' => "Matemáticas II",
-            'module' => 2,
-            'credits' => 5.2,
-            'length' => 4,
-            'order' => 9,
-        ]);
-
-        DB::table('subjects')->insert([
-            'id' => 10,
             'clv' => "CE-QUI02",
             'name' => "Química II",
             'module' => 2,
             'credits' => 4.3,
             'length' => 3,
-            'order' => 10,
+            'order' => 9,
         ]);
 
         DB::table('subjects')->insert([
-            'id' => 11,
+            'id' => 10,
             'clv' => "C-ING02",
             'name' => "Inglés II",
             'module' => 2,
             'credits' => 2.3,
             'length' => 2,
-            'order' => 11,
+            'order' => 10,
         ]);
 
         DB::table('subjects')->insert([
@@ -371,7 +361,7 @@ class SubjectsTableSeeder extends Seeder
 
         DB::table('subjects')->insert([
             'id' => 31,
-            'clv' => "CS-HIS04",
+            'clv' => "LIT02",
             'name' => "Literatura II",
             'module' => 5,
             'credits' => 2.6,
@@ -414,7 +404,7 @@ class SubjectsTableSeeder extends Seeder
 
         DB::table('subjects')->insert([
             'id' => 34,
-            'clv' => "CE-ECG01",
+            'clv' => "CE-MET01",
             'name' => "Metodología de la Investigación",
             'module' => 6,
             'credits' => 2.6,

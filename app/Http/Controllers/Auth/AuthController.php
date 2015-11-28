@@ -3,6 +3,8 @@
 namespace ceeacce\Http\Controllers\Auth;
 
 use ceeacce\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use ceeacce\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -22,6 +24,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
 
     /**
      * Create a new authentication controller instance.
@@ -62,4 +65,51 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * User login.
+     *
+     * @param  Request  $request
+     * @return User
+     */
+    protected function register(Request $request)
+    {
+        $data = $request->only(["email", "password","name", "remember"]);
+        $rememberMe = $data['remember'];
+
+        $user = new User;
+        $user->name = $data['name'];
+        $user->password = bcrypt($data['password']);
+        $user->email = $data['email'];
+
+        if($user->save()){
+            if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']],$rememberMe)) {
+                // Authentication passed...
+                return redirect()->intended('dashboard');
+            }
+        }
+
+        return redirect('user/register')->withInput($request->except('password'));
+
+    }
+
+    /**
+     * User login.
+     *
+     * @param  Request  $request
+     * @return User
+     */
+    protected function logIn(Request $request)
+    {
+        $data = $request->only(["email", "password"]);
+        $rememberMe = $request->has('remember');
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']],$rememberMe)) {
+            // Authentication passed...
+            return redirect()->intended('dashboard')->with('remember', $rememberMe);
+        }
+        return redirect('login')->withInput($request->except('password'));
+
+    }
+
 }
