@@ -196,4 +196,11 @@ class StudentController extends Controller
 
     }
 
+    /**
+     * Method that saves/updates the Studen info.
+    */
+    protected function save(Request $request){
+
+    }
+
 }
