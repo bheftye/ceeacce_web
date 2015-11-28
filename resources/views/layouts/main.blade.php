@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/sb-admin.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/plugins/morris.css') }}">
 
+    <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/icon.png') }}">
+
 
 </head>
 <body>
