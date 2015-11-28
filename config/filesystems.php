@@ -79,6 +79,10 @@ return [
             'region'    => 'IAD',
             'url_type'  => 'publicURL',
         ],
+        'csv' => [
+            'driver' => 'local',
+            'root'   => storage_path().'/csv',
+        ],
 
     ],
 
