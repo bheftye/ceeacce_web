@@ -15,6 +15,7 @@ use ceeacce\Student;
 
 class StudentController extends Controller
 {
+    private $types = ['EQU' => 'EQUIVALENCIA', 'EXT' => 'EXTRAORDINARIO', 'ORD' => 'ORDINARIO'];
     /*
     |--------------------------------------------------------------------------
     | Student Controller.
@@ -106,7 +107,7 @@ class StudentController extends Controller
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
                         $grade->date_taken = $gradeArray[2];
-                        $grade->type = $gradeArray[3];
+                        $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }
                     continue;
@@ -150,7 +151,7 @@ class StudentController extends Controller
                             $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                             $grade->grade = $gradeArray[1];
                             $grade->date_taken = $gradeArray[2];
-                            $grade->type = $gradeArray[3];
+                            $grade->type = $this->types[trim($gradeArray[3])];
                             $grade->save();
                         }
                     }
@@ -174,7 +175,7 @@ class StudentController extends Controller
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
                         $grade->date_taken = $gradeArray[2];
-                        $grade->type = $gradeArray[3];
+                        $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }
                     continue;
