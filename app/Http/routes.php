@@ -87,6 +87,10 @@ Route::group(['middleware' => 'auth'], function()
         return view('student/index')->with(['students'=> \ceeacce\Student::where('name', 'like', $searchString)->orWhere('last_name_p','like',$searchString)->orWhere('last_name_m','like',$searchString)->orderBy('last_name_p','asc')->paginate($defaultPagination), 'campuses' => \ceeacce\Campus::all()]);
     });
 
+    Route::post('student/save', 'Student\StudentController@save');
+
+    Route::post('student/grades/save', 'Student\StudentController@saveGrades');
+
 });
 
 

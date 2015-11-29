@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/sb-admin.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/plugins/morris.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/icon.png') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 
 
 </head>

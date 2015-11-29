@@ -15,6 +15,7 @@ use ceeacce\Student;
 
 class StudentController extends Controller
 {
+    private $types = ['EQU' => 'EQUIVALENCIA', 'EXT' => 'EXTRAORDINARIO', 'ORD' => 'ORDINARIO'];
     /*
     |--------------------------------------------------------------------------
     | Student Controller.
@@ -106,7 +107,7 @@ class StudentController extends Controller
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
                         $grade->date_taken = $gradeArray[2];
-                        $grade->type = $gradeArray[3];
+                        $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }
                     continue;
@@ -150,7 +151,7 @@ class StudentController extends Controller
                             $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                             $grade->grade = $gradeArray[1];
                             $grade->date_taken = $gradeArray[2];
-                            $grade->type = $gradeArray[3];
+                            $grade->type = $this->types[trim($gradeArray[3])];
                             $grade->save();
                         }
                     }
@@ -174,7 +175,7 @@ class StudentController extends Controller
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
                         $grade->date_taken = $gradeArray[2];
-                        $grade->type = $gradeArray[3];
+                        $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }
                     continue;
@@ -191,8 +192,54 @@ class StudentController extends Controller
     /**
      * Method that saves the Student Grades from the form.
     */
-    protected function saveGrades(){
+    protected function saveGrades(Request $request){
+        $id_student = $request->id_student;
+        $ids_subject = $request->ids;
+        $grades = $request->grades;
+        $dates_taken = $request->dates_taken;
+        $types = $request->types;
 
+        $index = 0;//first position
+        foreach($ids_subject as $id_subject){
+            $grade = Grade::firstOrCreate(['id_subject'=>$id_subject, 'id_student'=>$id_student]);
+            $grade->grade = $grades[$index];
+            $grade->date_taken = $dates_taken[$index];
+            $grade->type = $types[$index];
+            $grade->save();
+            $index++;
+        }
+
+        return redirect('student/'.$id_student);
+    }
+
+    /**
+     * Method that saves/updates the Studen info.
+    */
+    protected function save(Request $request){
+        $data = $request->only(['clv', 'id','name', 'last_name_p', 'last_name_m', 'curp', 'email','birthday', 'year']);
+
+        if($data['id'] != 0){
+            $student = Student::find($data['id']);
+        }
+        else{
+            $student = new Student();
+        }
+
+        $student->clv = $data['clv'];
+        $student->name = $data['name'];
+        $student->last_name_p = $data['last_name_p'];
+        $student->last_name_m = $data['last_name_m'];
+        $student->curp = $data['curp'];
+        $student->email = $data['email'];
+        $student->birthday = $data['birthday'];
+        $student->year = $data['year'];
+
+
+        if($student->save()){
+            return redirect('student/'.$student->id)->with(['success' => 'true']);
+        }
+
+        return redirect('student/'.$student->id)->withInput($request)->with(['success' => 'warning']);
     }
 
 }

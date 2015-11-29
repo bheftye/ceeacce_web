@@ -11,7 +11,7 @@
 <div class="col-lg-12">
     <h2>Estudiantes</h2>
     <div class="row">
-        <form class="col-lg-6" action="student/import" method="post" enctype="multipart/form-data">
+        <form class="col-lg-6" action="student/import" method="post" enctype="multipart/form-data" style="display:none;">
             Selecciona el archivo csv.
             <input type="file" name="csv" id="file">
             <br>

@@ -113,13 +113,13 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="active">
+            <li class="{{ (Request::is('plans') || Request::is('plan/*')) ? 'active' : '' }}">
                 <a href="/plans"><i class="fa fa-fw fa-folder"></i> Planes de Estudio</a>
             </li>
-            <li>
+            <li class="{{ (Request::is('students') || Request::is('student/*')) ? 'active' : '' }}">
                 <a href="/students"><i class="fa fa-fw fa-graduation-cap"></i> Estudiantes</a>
             </li>
-            <li>
+            <li class="{{ (Request::is('campuses')|| Request::is('campus/*')) ? 'active' : '' }}">
                 <a href="/campuses"><i class="fa fa-fw fa-building"></i> Planteles</a>
             </li>
         </ul>
