@@ -89,6 +89,8 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::post('student/save', 'Student\StudentController@save');
 
+    Route::post('student/grades/save', 'Student\StudentController@saveGrades');
+
 });
 
 

@@ -192,8 +192,24 @@ class StudentController extends Controller
     /**
      * Method that saves the Student Grades from the form.
     */
-    protected function saveGrades(){
+    protected function saveGrades(Request $request){
+        $id_student = $request->id_student;
+        $ids_subject = $request->ids;
+        $grades = $request->grades;
+        $dates_taken = $request->dates_taken;
+        $types = $request->types;
 
+        $index = 0;//first position
+        foreach($ids_subject as $id_subject){
+            $grade = Grade::firstOrCreate(['id_subject'=>$id_subject, 'id_student'=>$id_student]);
+            $grade->grade = $grades[$index];
+            $grade->date_taken = $dates_taken[$index];
+            $grade->type = $types[$index];
+            $grade->save();
+            $index++;
+        }
+
+        return redirect('student/'.$id_student);
     }
 
     /**

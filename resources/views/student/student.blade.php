@@ -30,7 +30,7 @@
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="info">
-            <form method="POST" action="/student/save">
+            <form id="form-info" method="POST" action="/student/save">
                 {!! csrf_field() !!}
 
                 <input type="hidden" value="{{$student->id}}" name="id">
@@ -148,34 +148,40 @@
             @foreach ($plan->modules as $module)
             <h4>{{$module->name}}</h4>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Clave</th>
-                        <th>Nombre</th>
-                        <th>Calificaci&oacute;n</th>
-                        <th>Fecha</th>
-                        <th>Modalidad</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($module->subjects as $subject)
-                    <?php
-                        $grade = \ceeacce\Grade::where(['id_subject'=>$subject->id, "id_student"=>$student->id])->first();
-                        $studentGrade = (isset($grade->grade))? $grade->grade:0;
-                    ?>
-                    <tr>
-                        <td><input type="hidden" value="{{$subject->id}}" name="id[]">{{$subject->id}}</td>
-                        <td>{{$subject->clv}}</td>
-                        <td>{{mb_strtoupper($subject->name)}}</td>
-                        <td><input type="text" name="grade[]" value="{{$studentGrade}}" disabled></td>
-                        <td><input type="text" name="date_taken[]" value="{{(isset($grade->date_taken))?$grade->date_taken:''}}" disabled></td>
-                        <td><input type="text" name="type[]" value="{{(isset($grade->type))?$grade->type:''}}" disabled></td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <form method="POST" action="/student/grades/save" class="form-grade" data-id="{{$module->id}}">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="id_student" value="{{$student->id}}">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Clave</th>
+                            <th>Nombre</th>
+                            <th>Calificaci&oacute;n</th>
+                            <th>Fecha</th>
+                            <th>Modalidad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($module->subjects as $subject)
+                        <?php
+                            $grade = \ceeacce\Grade::where(['id_subject'=>$subject->id, "id_student"=>$student->id])->first();
+                            $studentGrade = (isset($grade->grade))? $grade->grade:0;
+                        ?>
+                        <tr>
+                            <td><input type="hidden" value="{{$subject->id}}" name="ids[]">{{$subject->id}}</td>
+                            <td>{{$subject->clv}}</td>
+                            <td>{{mb_strtoupper($subject->name)}}</td>
+                            <td><input type="text" name="grades[]" value="{{$studentGrade}}" disabled></td>
+                            <td><input type="text" class="datepicker" name="dates_taken[]" value="{{(isset($grade->date_taken))?$grade->date_taken:''}}" disabled></td>
+                            <td><input type="text" name="types[]" value="{{(isset($grade->type))?$grade->type:''}}" disabled></td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <input type="submit" value="Guardar" class="pull-right btn-success">
+                    <input type="button" value="Editar" class="pull-right edit-grade-button btn-warning " data-id="{{$module->id}}">
+                </form>
             </div>
             @endforeach
         </div>
