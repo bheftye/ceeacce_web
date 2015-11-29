@@ -200,7 +200,30 @@ class StudentController extends Controller
      * Method that saves/updates the Studen info.
     */
     protected function save(Request $request){
+        $data = $request->only(['clv', 'id','name', 'last_name_p', 'last_name_m', 'curp', 'email','birthday', 'year']);
 
+        if($data['id'] != 0){
+            $student = Student::find($data['id']);
+        }
+        else{
+            $student = new Student();
+        }
+
+        $student->clv = $data['clv'];
+        $student->name = $data['name'];
+        $student->last_name_p = $data['last_name_p'];
+        $student->last_name_m = $data['last_name_m'];
+        $student->curp = $data['curp'];
+        $student->email = $data['email'];
+        $student->birthday = $data['birthday'];
+        $student->year = $data['year'];
+
+
+        if($student->save()){
+            return redirect('student/'.$student->id)->with(['success' => 'true']);
+        }
+
+        return redirect('student/'.$student->id)->withInput($request)->with(['success' => 'warning']);
     }
 
 }
