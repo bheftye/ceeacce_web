@@ -105,7 +105,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="logout"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesi&oacute;n</a>
+                    <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesi&oacute;n</a>
                 </li>
             </ul>
         </li>

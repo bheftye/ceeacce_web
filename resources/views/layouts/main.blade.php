@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/summernote.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/sb-admin.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('theme/css/plugins/morris.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('template/css/sb-admin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('template/css/plugins/morris.css') }}">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/icon.png') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -72,9 +72,6 @@
         </div>
     </div>
 </body>
-<script>
-    var root = <?php echo json_encode(public_path());?>;
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
