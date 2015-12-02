@@ -83,6 +83,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path().'/csv',
         ],
+        'word' => [
+            'driver' => 'local',
+            'root'   => storage_path().'/wordtemplate',
+        ],
 
     ],
 

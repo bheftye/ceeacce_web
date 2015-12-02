@@ -130,6 +130,15 @@ class FirstDump extends Migration
 
         });
 
+        Schema::create('documents', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('document_name');
+            $table->string('extension');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
 
     }
 

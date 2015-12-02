@@ -122,6 +122,9 @@
             <li class="{{ (Request::is('campuses')|| Request::is('campus/*')) ? 'active' : '' }}">
                 <a href="/campuses"><i class="fa fa-fw fa-building"></i> Planteles</a>
             </li>
+            <li class="{{ (Request::is('documents')|| Request::is('document/*')) ? 'active' : '' }}">
+                <a href="/documents"><i class="fa fa-fw fa-file-text"></i> Documentos / Plantillas</a>
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

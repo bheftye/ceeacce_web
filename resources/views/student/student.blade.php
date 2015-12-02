@@ -26,6 +26,7 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Informaci&oacute;n</a></li>
         <li role="presentation"><a href="#grades" aria-controls="grades" role="tab" data-toggle="tab">Calificaciones</a></li>
+        <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documentos</a></li>
     </ul>
 
     <div class="tab-content">
@@ -184,6 +185,9 @@
                 </form>
             </div>
             @endforeach
+        </div>
+        <div role="tabpanel" class="tab-pane" id="documents">
+
         </div>
     </div>
 </div>

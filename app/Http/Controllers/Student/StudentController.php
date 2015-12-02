@@ -3,7 +3,6 @@
 namespace ceeacce\Http\Controllers\Student;
 
 use ceeacce\Grade;
-use ceeacce\Plan;
 use ceeacce\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;

@@ -5,11 +5,11 @@
 
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/summernote.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('template/css/sb-admin.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('template/css/plugins/morris.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/icon.png') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 

@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function()
     });
 
     Route::get('plan/{id}', function($id){
-        return view('plan/plan')->with('plan', \ceeacce\Plan::find($id));
+        return view('plan/plan')->with('plan', \ceeacce\Plan::findOrFail($id));
     });
 
     Route::get('students', function(){
@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function()
     });
 
     Route::get('student/{id}', function($id){
-        return view('student/student')->with(['student' => \ceeacce\Student::find($id), 'plans' => \ceeacce\Plan::all(), 'campuses'=> \ceeacce\Campus::all()]);
+        return view('student/student')->with(['student' => \ceeacce\Student::findOrFail($id), 'plans' => \ceeacce\Plan::all(), 'campuses'=> \ceeacce\Campus::all()]);
     });
 
     Route::get('campuses', function(){
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function()
     });
 
     Route::get('campus/{id}', function($id){
-        return view('campus/campus')->with('campus', \ceeacce\Campus::find($id));
+        return view('campus/campus')->with('campus', \ceeacce\Campus::findOrFail($id));
     });
 
     Route::post('student/import', 'Student\StudentController@import');
@@ -90,6 +90,22 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('student/save', 'Student\StudentController@save');
 
     Route::post('student/grades/save', 'Student\StudentController@saveGrades');
+
+    Route::post('document/save', 'Document\DocumentController@save');
+
+    Route::get('documents', function(){
+        return view('document/index')->with('documents', \ceeacce\Document::all());
+    });
+
+    Route::get('document/create', function(){
+        return view('document/create');
+    });
+
+    Route::get('document/{id}', function($id){
+        return view('document/document')->with('document', \ceeacce\Document::findOrFail($id));
+    });
+
+
 
 });
 
