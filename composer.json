@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "twbs/bootstrap": "^3.3",
         "league/csv": "^7.2",
-        "phpoffice/phpword": "dev-master"
+        "phpoffice/phpword": "dev-master",
+        "tyz910/docx-templates": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

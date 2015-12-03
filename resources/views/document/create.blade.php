@@ -23,7 +23,7 @@
                     <input class="form-control" placeholder="Nombre" aria-describedby="basic-addon2" type="text" name="name">
                 </div>
                 <br>
-                Selecciona el archivo csv para importar las calificaciones
+                Selecciona el archivo de la plantilla
                 <input type="file" name="document" id="file">
                 <br>
 

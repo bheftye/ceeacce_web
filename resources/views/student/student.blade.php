@@ -187,7 +187,28 @@
             @endforeach
         </div>
         <div role="tabpanel" class="tab-pane" id="documents">
-
+            <h2>Documentos / Plantillas</h2>
+            <br>
+            <div class="table-responsive" style="margin-top:15px;">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descargar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($documents as $document)
+                    <tr>
+                        <td>{{$document->name}}</td>
+                        @if($document->name == "Kardex")
+                        <td><a target="_blank" href="/document/kardex/{{$student->id}}">Descargar</a></td>
+                        @endif
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function()
     });
 
     Route::get('student/{id}', function($id){
-        return view('student/student')->with(['student' => \ceeacce\Student::findOrFail($id), 'plans' => \ceeacce\Plan::all(), 'campuses'=> \ceeacce\Campus::all()]);
+        return view('student/student')->with(['student' => \ceeacce\Student::findOrFail($id), 'plans' => \ceeacce\Plan::all(), 'campuses'=> \ceeacce\Campus::all(), 'documents' => \ceeacce\Document::all()]);
     });
 
     Route::get('campuses', function(){
@@ -105,7 +105,11 @@ Route::group(['middleware' => 'auth'], function()
         return view('document/document')->with('document', \ceeacce\Document::findOrFail($id));
     });
 
+    Route::get('document/kardex/{id}', 'Document\DocumentController@generateKardex');
 
+    Route::get('close', function(){
+        return view('close');
+    });
 
 });
 

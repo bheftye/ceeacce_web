@@ -16,7 +16,7 @@
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="info">
-            <form method="POST" action="/document/save" enctype="multipart/form-data">
+            <form method="POST" action="/document/save" enctype="multipart/form-data" id="form-info">
                 {!! csrf_field() !!}
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon2"><i class="fa fa-folder"></i></span>
@@ -29,9 +29,9 @@
 
                 <input type="hidden" value="{{$document->id}}" name="id">
 
-                <input type="submit" value="Guardar" disabled class="pull-right btn-success">
+                <input type="submit" value="Guardar" class="pull-right btn-success">
 
-                <input type="button" value="Editar" disabled class="pull-right edit-button btn-warning ">
+                <input type="button" value="Editar" class="pull-right edit-button btn-warning ">
             </form>
         </div>
     </div>
