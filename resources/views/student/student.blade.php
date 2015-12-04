@@ -171,7 +171,7 @@
                         ?>
                         <tr>
                             <td><input type="hidden" value="{{$subject->id}}" name="ids[]">{{$subject->id}}</td>
-                            <td>{{$subject->clv}}</td>
+                            <td>{{strtolower(str_replace('-','',$subject->clv))}}</td>
                             <td>{{mb_strtoupper($subject->name)}}</td>
                             <td><input type="text" name="grades[]" value="{{$studentGrade}}" disabled></td>
                             <td><input type="text" class="datepicker" name="dates_taken[]" value="{{(isset($grade->date_taken))?$grade->date_taken:''}}" disabled></td>

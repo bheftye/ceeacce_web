@@ -42,4 +42,26 @@ class Student extends Model
     public function campus(){
         return $this->belongsTo('ceeacce\Campus','campus');
     }
+
+    public function calculateGPA(){
+        $plan = Plan::findOrFail($this->plan);
+        $gpa = 0;
+        $subject_sum = 0;
+        $subject_count = 0;
+        foreach ($plan->modules as $module){
+            foreach ($module->subjects as $subject){
+
+                $grade = Grade::where(['id_subject' => $subject->id, "id_student" => $this->id])->first();
+                $gradeValue = (isset($grade->grade)) ? $grade->grade : 0;
+                if($gradeValue != 0 && is_numeric($gradeValue)){
+                    $subject_count++;
+                    $subject_sum+=$gradeValue;
+                }
+            }
+        }
+        if($subject_count != 0){
+            $gpa = $subject_sum / $subject_count;
+        }
+        return $gpa;
+    }
 }
