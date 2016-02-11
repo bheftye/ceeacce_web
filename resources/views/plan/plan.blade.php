@@ -17,46 +17,53 @@
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="info">
-            <form method="POST" action="/plan/save">
+            <form method="POST" action="/plan/save" id="form-info">
                 {!! csrf_field() !!}
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon2"><i class="fa fa-folder"></i></span>
                     <input class="form-control" disabled placeholder="Nombre" aria-describedby="basic-addon2" type="text" name="name" value="{{$plan->name}}">
                 </div>
 
-                <input type="submit" value="Guardar" disabled class="pull-right btn-success">
+                <input type="hidden" name="id" value="{{$plan->id}}">
 
-                <input type="button" value="Editar" disabled class="pull-right edit-button btn-warning ">
+                <input type="submit" value="Guardar" class="pull-right btn-success">
+
+                <input type="button" value="Editar" class="pull-right edit-button btn-warning ">
 
             </form>
         </div>
         <div role="tabpanel" class="tab-pane" id="modules">
             @foreach ($plan->modules as $module)
                 <h4>{{$module->name}}</h4>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Clave</th>
-                            <th>Nombre</th>
-                            <th>Duracion (Semanas)</th>
-                            <th>Cr&eacute;ditos</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($module->subjects as $subject)
+                <form method="POST" action="/plan/module/update" class="form-grade" data-id="{{$module->id}}">
+                    <?php echo csrf_field(); ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
                             <tr>
-                                <td>{{$subject->id}}</td>
-                                <td>{{$subject->clv}}</td>
-                                <td>{{$subject->name}}</td>
-                                <td>{{$subject->length}}</td>
-                                <td>{{$subject->credits}}</td>
+                                <th>Id</th>
+                                <th>Clave</th>
+                                <th>Nombre</th>
+                                <th>Duracion (Semanas)</th>
+                                <th>Cr&eacute;ditos</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            @foreach ($module->subjects as $subject)
+                                <tr>
+                                    <td><input type="hidden"        name="subjects_ids[]"       value="{{$subject->id}}">{{$subject->id}}</td>
+                                    <td><input type="text" disabled name="subjects_clvs[]"      value="{{$subject->clv}}"></td>
+                                    <td><input type="text" disabled name="subjects_names[]"     value="{{$subject->name}}"></td>
+                                    <td><input type="text" disabled name="subjects_lengths[]"   value="{{$subject->length}}"></td>
+                                    <td><input type="text" disabled name="subjects_credits[]"   value="{{$subject->credits}}"></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <input type="submit" value="Guardar" class="pull-right btn-success">
+                        <input type="button" value="Editar" class="pull-right edit-grade-button btn-warning " data-id="{{$module->id}}">
+                    </div>
+                </form>
             @endforeach
         </div>
     </div>

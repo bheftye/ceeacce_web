@@ -60,6 +60,12 @@ Route::group(['middleware' => 'auth'], function()
         return view('plan/plan')->with('plan', \ceeacce\Plan::findOrFail($id));
     });
 
+    Route::post('plan/{id}', 'Plan\PlanController@update');
+
+    Route::post('plan/{id}/module', 'Plan\PlanController@saveModule');
+
+    Route::post('plan/module/update','Plan\PlanController@updateModule');
+
     Route::get('students', function(){
         $defaultPagination = 20;
         return view('student/index')->with(['students'=> \ceeacce\Student::orderBy('last_name_p','asc')->paginate($defaultPagination), 'campuses' => \ceeacce\Campus::all()]);
@@ -106,6 +112,8 @@ Route::group(['middleware' => 'auth'], function()
     });
 
     Route::get('document/kardex/{id}', 'Document\DocumentController@generateKardex');
+
+    Route::get('document/certificate/{id}', 'Document\DocumentController@generateCertificate');
 
     Route::get('close', function(){
         return view('close');

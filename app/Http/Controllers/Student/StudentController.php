@@ -15,6 +15,7 @@ use ceeacce\Student;
 class StudentController extends Controller
 {
     private $types = ['EQU' => 'EQUIVALENCIA', 'EXT' => 'EXTRAORDINARIO', 'ORD' => 'ORDINARIO'];
+    private $months = ['ene' => '01', 'feb' => '02', 'mar' => '03', 'abr' => '04', 'may' => '05', 'jun' => '06', 'jul' => '07', 'ago' => '08','sep' => '09', 'oct' => '10', 'nov' => '11', 'dic' => '12'];
     /*
     |--------------------------------------------------------------------------
     | Student Controller.
@@ -105,7 +106,18 @@ class StudentController extends Controller
                     if($subject->id != null){
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
-                        $grade->date_taken = $gradeArray[2];
+                        /*Reformat Date*/
+                        if(strpos($gradeArray[2], '-') !== FALSE)
+                        {
+                            $date = explode('-',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                            $newDate = "20".$date[2]."/".$this->months[$date[1]]."/".$date[0];
+                        }
+                        else
+                        {
+                            $date = explode(' ',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                            $newDate = $date[2]."/".$this->months[strtolower($date[1])]."/".$date[0];
+                        }
+                        $grade->date_taken = $newDate;
                         $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }
@@ -149,7 +161,18 @@ class StudentController extends Controller
                         if(isset($subject->id) && $subject->id != null){
                             $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                             $grade->grade = $gradeArray[1];
-                            $grade->date_taken = $gradeArray[2];
+                            /*Reformat Date*/
+                            if(strpos($gradeArray[2], '-') !== FALSE)
+                            {
+                                $date = explode('-',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                                $newDate = "20".$date[2]."/".$this->months[$date[1]]."/".$date[0];
+                            }
+                            else
+                            {
+                                $date = explode(' ',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                                $newDate = $date[2]."/".$this->months[strtolower($date[1])]."/".$date[0];
+                            }
+                            $grade->date_taken = $newDate;
                             $grade->type = $this->types[trim($gradeArray[3])];
                             $grade->save();
                         }
@@ -173,7 +196,18 @@ class StudentController extends Controller
 
                         $grade = Grade::firstOrCreate(['id_subject'=>$subject->id, 'id_student'=>$student_id]);
                         $grade->grade = $gradeArray[1];
-                        $grade->date_taken = $gradeArray[2];
+                        /*Reformat Date*/
+                        if(strpos($gradeArray[2], '-') !== FALSE)
+                        {
+                            $date = explode('-',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                            $newDate = "20".$date[2]."/".$this->months[$date[1]]."/".$date[0];
+                        }
+                        else
+                        {
+                            $date = explode(' ',trim($gradeArray[2])); // [dia 0, mes 1, año 2]
+                            $newDate = $date[2]."/".$this->months[strtolower($date[1])]."/".$date[0];
+                        }
+                        $grade->date_taken = $newDate;
                         $grade->type = $this->types[trim($gradeArray[3])];
                         $grade->save();
                     }

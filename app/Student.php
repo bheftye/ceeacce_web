@@ -55,12 +55,13 @@ class Student extends Model
                 $gradeValue = (isset($grade->grade)) ? $grade->grade : 0;
                 if($gradeValue != 0 && is_numeric($gradeValue)){
                     $subject_count++;
-                    $subject_sum+=$gradeValue;
+                    $subject_sum += $gradeValue;
                 }
             }
         }
         if($subject_count != 0){
             $gpa = $subject_sum / $subject_count;
+            $gpa = round($gpa, 0, PHP_ROUND_HALF_UP);
         }
         return $gpa;
     }
