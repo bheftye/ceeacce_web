@@ -235,15 +235,15 @@ class DocumentController extends Controller
                 $templateProcessor->setValue('gpa', $student->calculateGPA());
 
                 //Date Data Created
-                $templateProcessor->setValue('day_txt', strtolower($this->numberToWordsHelper->convert(date('j'))));
-                $templateProcessor->setValue('month_txt', strtolower($this->months[date('n')]));
-                $templateProcessor->setValue('year_txt', strtolower($this->numberToWordsHelper->convert(date('o'))));
+                $templateProcessor->setValue('day_txt', mb_strtolower($this->numberToWordsHelper->convert(date('j'))));
+                $templateProcessor->setValue('month_txt', mb_strtolower($this->months[date('n')]));
+                $templateProcessor->setValue('year_txt', mb_strtolower($this->numberToWordsHelper->convert(date('o'))));
 
                 //Last Class Taken
                 $lastGrade = Grade::where(["id_student" => $student->id])->orderBy('date_taken','desc')->first();
                 $lastDateArray = explode('/', $lastGrade->date_taken);
                 $last_date = $this->numberToWordsHelper->convert($lastDateArray[2])." DE ".strtoupper($this->months[intval($lastDateArray[1])]." DE ".$this->numberToWordsHelper->convert($lastDateArray[0])).".";
-                $templateProcessor->setValue('lastdate', $last_date);
+                $templateProcessor->setValue('last_date', $last_date);
 
                 foreach ($plan->modules as $module){
                     foreach ($module->subjects as $subject){
